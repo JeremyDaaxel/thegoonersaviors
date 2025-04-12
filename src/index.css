@@ -1,0 +1,119 @@
+
+@import url('https://fonts.cdnfonts.com/css/abc-ginto-nord-unlicensed-trial');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 250 84% 64%;
+    --primary-foreground: 240 5.9% 10%;
+
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 250 84% 64%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 240 10% 3.9%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 250 84% 64%;
+    --sidebar-primary-foreground: 240 5.9% 10%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 250 84% 64%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: "ABC Ginto Nord Condensed Unlicensed Trial", sans-serif;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-white/10 backdrop-blur-md shadow-md border border-white/10;
+  }
+  
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .shimmer {
+    background: linear-gradient(90deg, 
+      rgba(255, 255, 255, 0) 0%, 
+      rgba(255, 255, 255, 0.1) 25%, 
+      rgba(255, 255, 255, 0.1) 50%, 
+      rgba(255, 255, 255, 0) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  /* Manhwa specific styles */
+  .manhwa-card-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20;
+  }
+}
+
+/* Improved scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Focus states */
+:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+/* Smooth transitions */
+* {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
