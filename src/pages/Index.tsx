@@ -150,7 +150,7 @@ const Index = () => {
       <h2 className="text-4xl font-black mb-1 text-center sm:text-3xl md:text-4xl lg:text-5xl">
         POPULAR ESTA SEMANA
       </h2>
-      <h3 className="text-center font-ginto md:text-2xl mb-10 text">Los Manhwas más vistos y mas votados esta semana.</h3>
+      <h3 className="text-center font-ginto md:text-2xl mb-10 text">Los Manhwas más vistos y votados esta semana.</h3>
       <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-purple-500 to-transparent mb-6 rounded-lg" />
       <Carousel className="w-full">
         <CarouselContent className="-ml-1">
