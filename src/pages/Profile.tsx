@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -15,12 +14,12 @@ import {
 } from "@/components/ui/dialog";
 import { BookMarked, Heart, UserRound } from 'lucide-react';
 
-// Simulación de datos de manhwas seguidos y favoritos
+
 const followedManhwas = [
-  { id: 1, title: "The Study Group", cover: "/ranking_imgs/Sexstudy.png", lastRead: "Capítulo 45" },
-  { id: 2, title: "Secret Class", cover: "/popular_imgs/1.webp", lastRead: "Capítulo 123" },
-  { id: 3, title: "Silent War", cover: "/popular_imgs/2.webp", lastRead: "Capítulo 67" },
-  { id: 4, title: "Queen Bee", cover: "/popular_imgs/3.webp", lastRead: "Capítulo 89" },
+  { id: 1, title: "Secret Class", cover: "/popular_imgs/1.webp", lastRead: "Capítulo 123" },
+  { id: 1, title: "Secret Class", cover: "/popular_imgs/1.webp", lastRead: "Capítulo 123" },
+  { id: 1, title: "Secret Class", cover: "/popular_imgs/1.webp", lastRead: "Capítulo 123" },
+  
 ];
 
 const favoriteManhwas = [
@@ -29,37 +28,46 @@ const favoriteManhwas = [
   { id: 6, title: "Isai's Stepmother", cover: "/popular_imgs/5.webp", rating: "4.8/5" },
 ];
 
-// Iconos para cambiar el avatar del perfil (guardado en cache)
+
 const profileIcons = [
-  { id: 1, src: "profile_icons/P1.jpg", alt: "A Yogurt Lady" },
-  { id: 2, src: "profile_icons/P2.jpg", alt: "Icono de mono" },
-  { id: 3, src: "profile_icons/P3.jpg", alt: "Icono de elfo" },
-  { id: 4, src: "profile_icons/P1.jpg", alt: "Icono de superhéroe" },
-  { id: 5, src: "profile_icons/P5.jpg", alt: "Icono amarillo" },
-  { id: 6, src: "profile_icons/P6.jpg", alt: "Icono azul" },
-  { id: 7, src: "profile_icons/P7.jpg", alt: "Icono rosa" },
-  { id: 8, src: "profile_icons/P8.jpg", alt: "Icono de erizo" },
-  { id: 9, src: "profile_icons/P9.jpg", alt: "Icono de chica" },
-  { id: 10, src: "profile_icons/P10.jpg", alt: "Icono de slime" },
-  { id: 11, src: "profile_icons/P11.jpg", alt: "Icono de gato" },
-  { id: 12, src: "profile_icons/P12.jpg", alt: "Icono de Mii" },
+  { id: 1, src: "profile_icons/P1.jpg", alt: "" },
+  { id: 2, src: "profile_icons/P2.jpg", alt: "" },
+  { id: 3, src: "profile_icons/P3.jpg", alt: "" },
+  { id: 4, src: "profile_icons/P4.jpg", alt: "" },
+  { id: 5, src: "profile_icons/P5.jpg", alt: "" },
+  { id: 6, src: "profile_icons/P6.jpg", alt: "" },
+  { id: 7, src: "profile_icons/P7.jpg", alt: "" },
+  { id: 8, src: "profile_icons/P8.jpg", alt: "" },
+  { id: 9, src: "profile_icons/P9.jpg", alt: "" },
+  { id: 10, src: "profile_icons/P10.jpg", alt: "" },
+  { id: 11, src: "profile_icons/P11.jpg", alt: "" },
+  { id: 12, src: "profile_icons/P12.jpg", alt: "" },
+  { id: 13, src: "profile_icons/P13.jpg", alt: "" },
+  { id: 14, src: "profile_icons/P14.jpg", alt: "" },
+  { id: 15, src: "profile_icons/P15.jpg", alt: "" },
+  { id: 16, src: "profile_icons/P16.jpg", alt: "" },
+  { id: 17, src: "profile_icons/P17.jpg", alt: "" },
+  { id: 18, src: "profile_icons/P18.jpg", alt: "" },
+  { id: 19, src: "profile_icons/P19.jpg", alt: "" },
+  { id: 20, src: "profile_icons/P20.jpg", alt: "" },
 ];
 
 const ManhwaCard = ({ title, cover, subtitle }: { title: string; cover: string; subtitle: string }) => {
   return (
-    <div className="flex items-center space-x-4 p-3 border border-border/50 rounded-lg hover:bg-accent/20 transition-colors">
+    <div className="w-[180px] flex-shrink-0 rounded-lg overflow-hidden bg-card shadow hover:scale-[1.02] transition-transform">
       <img
         src={cover}
         alt={title}
-        className="h-16 w-14 object-cover rounded"
+        className="w-full h-[250px] object-cover"
       />
-      <div>
-        <h4 className="font-medium">{title}</h4>
-        <p className="text-sm text-muted-foreground">{subtitle}</p>
+      <div className="px-3 py-2 flex flex-col justify-center">
+        <h4 className="font-semibold text-sm line-clamp-2">{title}</h4>
+        <p className="text-xs text-muted-foreground">{subtitle}</p>
       </div>
     </div>
   );
 };
+
 
 const Profile = () => {
   const [username, setUsername] = useState<string>("Usuario");
@@ -67,17 +75,13 @@ const Profile = () => {
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  // Comprobar si el usuario ha iniciado sesión
   useEffect(() => {
-    // En una implementación real, habría que verificar si hay un token válido
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     if (!isLoggedIn) {
       navigate('/login');
     } else {
-      // Cargar datos del usuario
       const savedUsername = localStorage.getItem('username');
       const savedAvatarUrl = localStorage.getItem('avatarUrl');
-      
       if (savedUsername) setUsername(savedUsername);
       if (savedAvatarUrl) setAvatarUrl(savedAvatarUrl);
     }
@@ -109,7 +113,7 @@ const Profile = () => {
               <p className="text-muted-foreground">Miembro desde Abril 2025</p>
             </div>
           </div>
-          
+
           <div className="flex flex-col sm:flex-row gap-3">
             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
               <DialogTrigger asChild>
@@ -117,27 +121,28 @@ const Profile = () => {
               </DialogTrigger>
               <DialogContent className="sm:max-w-[600px]">
                 <DialogHeader>
-                  <DialogTitle>Selecciona un Icono</DialogTitle>
+                  <DialogTitle className="uppercase">Selecciona un Icono</DialogTitle>
                 </DialogHeader>
-                <div className="grid grid-cols-3 md:grid-cols-4 gap-4 py-4">
-                  {profileIcons.map(icon => (
-                    <button
-                    key={icon.id}
-                    onClick={() => handleAvatarChange(icon.src)}
-                    className="relative overflow-hidden aspect-square rounded-full border-2 hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary transition-colors"
-                    >
-                    <img
-                        src={icon.src}
-                        alt={icon.alt}
-                        className="w-full h-full object-cover rounded-full"
-                    />
-                    </button>
-
-                  ))}
+                <div className="max-h-[450px] overflow-y-auto pr-2">
+                  <div className="grid grid-cols-3 md:grid-cols-3 gap-4 py-4">
+                    {profileIcons.map(icon => (
+                      <button
+                        key={icon.id}
+                        onClick={() => handleAvatarChange(icon.src)}
+                        className="relative overflow-hidden aspect-square rounded-full border-2 hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary transition-colors"
+                      >
+                        <img
+                          src={icon.src}
+                          alt={icon.alt}
+                          className="w-full h-full object-cover rounded-full"
+                        />
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </DialogContent>
             </Dialog>
-            
+
             <Button variant="destructive" onClick={handleLogout}>Cerrar Sesión</Button>
           </div>
         </div>
@@ -153,11 +158,11 @@ const Profile = () => {
               <span>Favoritos</span>
             </TabsTrigger>
           </TabsList>
-          
+
           <TabsContent value="following" className="mt-6">
             <Card>
               <CardContent className="pt-6">
-                <div className="grid gap-4">
+                <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-primary/50">
                   {followedManhwas.length > 0 ? (
                     followedManhwas.map(manhwa => (
                       <ManhwaCard 
@@ -174,7 +179,7 @@ const Profile = () => {
               </CardContent>
             </Card>
           </TabsContent>
-          
+
           <TabsContent value="favorites" className="mt-6">
             <Card>
               <CardContent className="pt-6">
