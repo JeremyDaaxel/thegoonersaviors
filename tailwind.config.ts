@@ -21,6 +21,7 @@ export default {
 		extend: {
 			fontFamily: {
 				ginto: ['ABC Ginto Nord Condensed Unlicensed Trial', 'sans-serif'],
+				poppins: ['Poppins', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',

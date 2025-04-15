@@ -14,20 +14,17 @@ import {
 } from "@/components/ui/dialog";
 import { BookMarked, Heart, UserRound } from 'lucide-react';
 
-
 const followedManhwas = [
   { id: 1, title: "Secret Class", cover: "/popular_imgs/1.webp", lastRead: "Capítulo 123" },
-  { id: 1, title: "Secret Class", cover: "/popular_imgs/1.webp", lastRead: "Capítulo 123" },
-  { id: 1, title: "Secret Class", cover: "/popular_imgs/1.webp", lastRead: "Capítulo 123" },
-  
+  { id: 2, title: "Secret Class", cover: "/popular_imgs/1.webp", lastRead: "Capítulo 123" },
+  { id: 3, title: "Secret Class", cover: "/popular_imgs/1.webp", lastRead: "Capítulo 123" },
 ];
 
 const favoriteManhwas = [
-  { id: 2, title: "Secret Class", cover: "/popular_imgs/1.webp", rating: "5/5" },
+  { id: 4, title: "Secret Class", cover: "/popular_imgs/1.webp", rating: "5/5" },
   { id: 5, title: "Stepmother's Friends", cover: "/popular_imgs/4.webp", rating: "4.5/5" },
   { id: 6, title: "Isai's Stepmother", cover: "/popular_imgs/5.webp", rating: "4.8/5" },
 ];
-
 
 const profileIcons = [
   { id: 1, src: "profile_icons/P1.jpg", alt: "" },
@@ -48,31 +45,23 @@ const profileIcons = [
   { id: 16, src: "profile_icons/P16.jpg", alt: "" },
   { id: 17, src: "profile_icons/P17.jpg", alt: "" },
   { id: 18, src: "profile_icons/P18.jpg", alt: "" },
-  { id: 19, src: "profile_icons/P19.jpg", alt: "" },
-  { id: 20, src: "profile_icons/P20.jpg", alt: "" },
 ];
 
-const ManhwaCard = ({ title, cover, subtitle }: { title: string; cover: string; subtitle: string }) => {
-  return (
-    <div className="w-[180px] flex-shrink-0 rounded-lg overflow-hidden bg-card shadow hover:scale-[1.02] transition-transform">
-      <img
-        src={cover}
-        alt={title}
-        className="w-full h-[250px] object-cover"
-      />
-      <div className="px-3 py-2 flex flex-col justify-center">
-        <h4 className="font-semibold text-sm line-clamp-2">{title}</h4>
-        <p className="text-xs text-muted-foreground">{subtitle}</p>
-      </div>
+const ManhwaCard = ({ title, cover, subtitle }: { title: string; cover: string; subtitle: string }) => (
+  <div>
+    <img src={cover} alt={title} />
+    <div className="px-3 py-2 flex flex-col justify-center">
+      <h4 className="font-semibold text-sm line-clamp-2">{title}</h4>
+      <p className="text-xs text-muted-foreground">{subtitle}</p>
     </div>
-  );
-};
-
+  </div>
+);
 
 const Profile = () => {
   const [username, setUsername] = useState<string>("Usuario");
   const [avatarUrl, setAvatarUrl] = useState<string>(profileIcons[0].src);
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+  const [activeTab, setActiveTab] = useState("following");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -87,15 +76,37 @@ const Profile = () => {
     }
   }, [navigate]);
 
+  const playClickSound = () => {
+    const audio = new Audio("/click_sounds/click.mp3");
+    audio.play();
+  };
+
+  const playAvatarSound = () => {
+    const audio = new Audio("/click_sounds/clickseguido.wav");
+    audio.play();
+  };
+
   const handleAvatarChange = (iconSrc: string) => {
+    playAvatarSound(); // 🎵 Sonido especial para el avatar
     setAvatarUrl(iconSrc);
     localStorage.setItem('avatarUrl', iconSrc);
     setIsDialogOpen(false);
   };
 
   const handleLogout = () => {
+    playClickSound();
     localStorage.removeItem('isLoggedIn');
     navigate('/login');
+  };
+
+  const handleOpenDialog = () => {
+    playClickSound();
+  };
+
+  const handleTabChange = (value: string) => {
+    const audio = new Audio("/click_sounds/click.mp3");
+    audio.play();
+    setActiveTab(value);
   };
 
   return (
@@ -104,7 +115,7 @@ const Profile = () => {
       <div className="flex-1 container mx-auto px-4 py-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
           <div className="flex items-center gap-4">
-            <Avatar className="h-20 w-20 border-2 border-primary">
+          <Avatar className="h-[100px] w-[100px] border-2 border-primary">
               <AvatarImage src={avatarUrl} alt={username} />
               <AvatarFallback><UserRound size={40} /></AvatarFallback>
             </Avatar>
@@ -117,11 +128,13 @@ const Profile = () => {
           <div className="flex flex-col sm:flex-row gap-3">
             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
               <DialogTrigger asChild>
-                <Button variant="outline">Cambiar Avatar</Button>
+                <Button className='font-poppins' variant="outline" onClick={handleOpenDialog}>
+                  Cambiar Avatar
+                </Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[600px]">
                 <DialogHeader>
-                  <DialogTitle className="uppercase">Selecciona un Icono</DialogTitle>
+                  <DialogTitle className="font-poppins font-bold text-center">Selecciona un Icono</DialogTitle>
                 </DialogHeader>
                 <div className="max-h-[450px] overflow-y-auto pr-2">
                   <div className="grid grid-cols-3 md:grid-cols-3 gap-4 py-4">
@@ -143,17 +156,17 @@ const Profile = () => {
               </DialogContent>
             </Dialog>
 
-            <Button variant="destructive" onClick={handleLogout}>Cerrar Sesión</Button>
+            <Button className='font-poppins' variant="destructive" onClick={handleLogout}>Cerrar Sesión</Button>
           </div>
         </div>
 
-        <Tabs defaultValue="following" className="w-full">
+        <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="following" className="flex items-center gap-2">
+            <TabsTrigger value="following" className="font-poppins flex items-center gap-2">
               <BookMarked size={16} />
               <span>Siguiendo</span>
             </TabsTrigger>
-            <TabsTrigger value="favorites" className="flex items-center gap-2">
+            <TabsTrigger value="favorites" className="font-poppins flex items-center gap-2">
               <Heart size={16} />
               <span>Favoritos</span>
             </TabsTrigger>
@@ -165,7 +178,7 @@ const Profile = () => {
                 <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-primary/50">
                   {followedManhwas.length > 0 ? (
                     followedManhwas.map(manhwa => (
-                      <ManhwaCard 
+                      <ManhwaCard
                         key={manhwa.id}
                         title={manhwa.title}
                         cover={manhwa.cover}
@@ -186,7 +199,7 @@ const Profile = () => {
                 <div className="grid gap-4">
                   {favoriteManhwas.length > 0 ? (
                     favoriteManhwas.map(manhwa => (
-                      <ManhwaCard 
+                      <ManhwaCard
                         key={manhwa.id}
                         title={manhwa.title}
                         cover={manhwa.cover}

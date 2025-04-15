@@ -87,13 +87,13 @@ const Header: React.FC = () => {
         {/* Add login section */}
         <div className="hidden md:flex items-center gap-3">
           <Button variant="outline" size="sm" asChild>
-            <Link to="/login" className="flex items-center gap-2">
+            <Link to="/login" className="flex items-center gap-2 font-poppins">
               <LogIn size={16} />
               <span>Iniciar Sesión</span>
             </Link>
           </Button>
           <Button size="sm" asChild>
-            <Link to="/register" className="flex items-center gap-2">
+            <Link to="/register" className="flex items-center gap-2 font-poppins">
               <User size={16} />
               <span>Registrarse</span>
             </Link>
