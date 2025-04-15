@@ -15,15 +15,41 @@ import {
 import { BookMarked, Heart, UserRound } from 'lucide-react';
 
 const followedManhwas = [
-  { id: 1, title: "Secret Class", cover: "/popular_imgs/1.webp", lastRead: "Capítulo 123" },
-  { id: 2, title: "Secret Class", cover: "/popular_imgs/1.webp", lastRead: "Capítulo 123" },
-  { id: 3, title: "Secret Class", cover: "/popular_imgs/1.webp", lastRead: "Capítulo 123" },
+  { id: 1, title: "Secret Class", cover: "/followed_manhwas/1.jpg", lastRead: "Capítulo 123" },
+  { id: 2, title: "Secret Class", cover: "/followed_manhwas/2.jpg", lastRead: "Capítulo 123" },
+  { id: 3, title: "Secret Class", cover: "/followed_manhwas/3.jpg", lastRead: "Capítulo 123" },
+  { id: 4, title: "Secret Class", cover: "/followed_manhwas/4.jpg", lastRead: "Capítulo 123" },
+  { id: 5, title: "Secret Class", cover: "/followed_manhwas/5.jpg", lastRead: "Capítulo 123" },
+  { id: 6, title: "Secret Class", cover: "/followed_manhwas/6.jpg", lastRead: "Capítulo 123" },
+  { id: 7, title: "Secret Class", cover: "/followed_manhwas/7.jpg", lastRead: "Capítulo 123" },
+  { id: 8, title: "Secret Class", cover: "/followed_manhwas/8.jpg", lastRead: "Capítulo 123" },
+  { id: 9, title: "Secret Class", cover: "/followed_manhwas/9.jpg", lastRead: "Capítulo 123" },
+  { id: 10, title: "Secret Class", cover: "/followed_manhwas/10.jpg", lastRead: "Capítulo 123" },
+  { id: 11, title: "Secret Class", cover: "/followed_manhwas/11.jpg", lastRead: "Capítulo 123" },
+  { id: 12, title: "Secret Class", cover: "/followed_manhwas/12.jpg", lastRead: "Capítulo 123" },
+  { id: 13, title: "Secret Class", cover: "/followed_manhwas/13.jpg", lastRead: "Capítulo 123" },
+  { id: 14, title: "Secret Class", cover: "/followed_manhwas/14.jpg", lastRead: "Capítulo 123" },
+  { id: 15, title: "Secret Class", cover: "/followed_manhwas/15.jpg", lastRead: "Capítulo 123" },
+  { id: 16, title: "Secret Class", cover: "/followed_manhwas/16.jpg", lastRead: "Capítulo 123" },
 ];
 
 const favoriteManhwas = [
-  { id: 4, title: "Secret Class", cover: "/popular_imgs/1.webp", rating: "5/5" },
-  { id: 5, title: "Stepmother's Friends", cover: "/popular_imgs/4.webp", rating: "4.5/5" },
-  { id: 6, title: "Isai's Stepmother", cover: "/popular_imgs/5.webp", rating: "4.8/5" },
+  { id: 1, title: "Secret Class", cover: "/followed_manhwas/1.jpg", lastRead: "Capítulo 123" },
+  { id: 2, title: "Secret Class", cover: "/followed_manhwas/2.jpg", lastRead: "Capítulo 123" },
+  { id: 3, title: "Secret Class", cover: "/followed_manhwas/3.jpg", lastRead: "Capítulo 123" },
+  { id: 4, title: "Secret Class", cover: "/followed_manhwas/4.jpg", lastRead: "Capítulo 123" },
+  { id: 5, title: "Secret Class", cover: "/followed_manhwas/5.jpg", lastRead: "Capítulo 123" },
+  { id: 6, title: "Secret Class", cover: "/followed_manhwas/6.jpg", lastRead: "Capítulo 123" },
+  { id: 7, title: "Secret Class", cover: "/followed_manhwas/7.jpg", lastRead: "Capítulo 123" },
+  { id: 8, title: "Secret Class", cover: "/followed_manhwas/8.jpg", lastRead: "Capítulo 123" },
+  { id: 9, title: "Secret Class", cover: "/followed_manhwas/9.jpg", lastRead: "Capítulo 123" },
+  { id: 10, title: "Secret Class", cover: "/followed_manhwas/10.jpg", lastRead: "Capítulo 123" },
+  { id: 11, title: "Secret Class", cover: "/followed_manhwas/11.jpg", lastRead: "Capítulo 123" },
+  { id: 12, title: "Secret Class", cover: "/followed_manhwas/12.jpg", lastRead: "Capítulo 123" },
+  { id: 13, title: "Secret Class", cover: "/followed_manhwas/13.jpg", lastRead: "Capítulo 123" },
+  { id: 14, title: "Secret Class", cover: "/followed_manhwas/14.jpg", lastRead: "Capítulo 123" },
+  { id: 15, title: "Secret Class", cover: "/followed_manhwas/15.jpg", lastRead: "Capítulo 123" },
+  { id: 16, title: "Secret Class", cover: "/followed_manhwas/16.jpg", lastRead: "Capítulo 123" },
 ];
 
 const profileIcons = [
@@ -47,20 +73,28 @@ const profileIcons = [
   { id: 18, src: "profile_icons/P18.jpg", alt: "" },
 ];
 
-const ManhwaCard = ({ title, cover, subtitle }: { title: string; cover: string; subtitle: string }) => (
-  <div>
-    <img src={cover} alt={title} />
-    <div className="px-3 py-2 flex flex-col justify-center">
-      <h4 className="font-semibold text-sm line-clamp-2">{title}</h4>
-      <p className="text-xs text-muted-foreground">{subtitle}</p>
+const ManhwaCard = ({ title, cover, subtitle }) => (
+  <div className="flex flex-col items-center">
+    <div className="rounded-lg overflow-hidden border border-border bg-muted shadow-md hover:shadow-lg transition-shadow cursor-pointer group w-[108%]">
+      <div className="relative w-[100%]">
+        <img
+          src={cover}
+          alt={title}
+          className="w-full h-full object-cover"
+        />
+      </div>
+    </div>
+    <div className="mt-2 text-center w-[150px]">
+      <h4 className="font-semibold text-sm line-clamp-2 text-foreground">{title}</h4>
+      {subtitle && <p className="text-xs text-muted-foreground mt-1">{subtitle}</p>}
     </div>
   </div>
 );
 
 const Profile = () => {
-  const [username, setUsername] = useState<string>("Usuario");
-  const [avatarUrl, setAvatarUrl] = useState<string>(profileIcons[0].src);
-  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+  const [username, setUsername] = useState("Usuario");
+  const [avatarUrl, setAvatarUrl] = useState(profileIcons[0].src);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("following");
   const navigate = useNavigate();
 
@@ -86,8 +120,8 @@ const Profile = () => {
     audio.play();
   };
 
-  const handleAvatarChange = (iconSrc: string) => {
-    playAvatarSound(); // 🎵 Sonido especial para el avatar
+  const handleAvatarChange = (iconSrc) => {
+    playAvatarSound();
     setAvatarUrl(iconSrc);
     localStorage.setItem('avatarUrl', iconSrc);
     setIsDialogOpen(false);
@@ -103,9 +137,8 @@ const Profile = () => {
     playClickSound();
   };
 
-  const handleTabChange = (value: string) => {
-    const audio = new Audio("/click_sounds/click.mp3");
-    audio.play();
+  const handleTabChange = (value) => {
+    playClickSound();
     setActiveTab(value);
   };
 
@@ -115,7 +148,7 @@ const Profile = () => {
       <div className="flex-1 container mx-auto px-4 py-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
           <div className="flex items-center gap-4">
-          <Avatar className="h-[100px] w-[100px] border-2 border-primary">
+            <Avatar className="h-[100px] w-[100px] border-2 border-primary">
               <AvatarImage src={avatarUrl} alt={username} />
               <AvatarFallback><UserRound size={40} /></AvatarFallback>
             </Avatar>
@@ -175,20 +208,24 @@ const Profile = () => {
           <TabsContent value="following" className="mt-6">
             <Card>
               <CardContent className="pt-6">
-                <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-primary/50">
-                  {followedManhwas.length > 0 ? (
-                    followedManhwas.map(manhwa => (
-                      <ManhwaCard
-                        key={manhwa.id}
-                        title={manhwa.title}
-                        cover={manhwa.cover}
-                        subtitle={manhwa.lastRead}
-                      />
-                    ))
-                  ) : (
-                    <p className="text-center py-10 text-muted-foreground">No estás siguiendo ningún manhwa.</p>
-                  )}
-                </div>
+                {followedManhwas.length > 0 ? (
+                  <div className="mx-auto max-w-screen-xl">
+                    <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-5">
+                      {followedManhwas.map((manhwa) => (
+                        <ManhwaCard
+                          key={manhwa.id}
+                          title={manhwa.title}
+                          cover={manhwa.cover}
+                          subtitle={manhwa.lastRead}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <p className="text-center py-10 text-muted-foreground">
+                    No estás siguiendo ningún manhwa.
+                  </p>
+                )}
               </CardContent>
             </Card>
           </TabsContent>
@@ -196,20 +233,24 @@ const Profile = () => {
           <TabsContent value="favorites" className="mt-6">
             <Card>
               <CardContent className="pt-6">
-                <div className="grid gap-4">
-                  {favoriteManhwas.length > 0 ? (
-                    favoriteManhwas.map(manhwa => (
-                      <ManhwaCard
-                        key={manhwa.id}
-                        title={manhwa.title}
-                        cover={manhwa.cover}
-                        subtitle={`Calificación: ${manhwa.rating}`}
-                      />
-                    ))
-                  ) : (
-                    <p className="text-center py-10 text-muted-foreground">No has agregado ningún manhwa a favoritos.</p>
-                  )}
-                </div>
+                {followedManhwas.length > 0 ? (
+                  <div className="mx-auto max-w-screen-xl">
+                    <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-5">
+                      {followedManhwas.map((manhwa) => (
+                        <ManhwaCard
+                          key={manhwa.id}
+                          title={manhwa.title}
+                          cover={manhwa.cover}
+                          subtitle={manhwa.lastRead}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <p className="text-center py-10 text-muted-foreground">
+                    No estás siguiendo ningún manhwa.
+                  </p>
+                )}
               </CardContent>
             </Card>
           </TabsContent>
