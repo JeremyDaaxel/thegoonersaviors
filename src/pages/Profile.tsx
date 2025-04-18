@@ -53,7 +53,7 @@ const favoriteManhwas = [
 ];
 
 const profileIcons = [
-  { id: 1, src: "profile_icons/P1.jpg", alt: "" },
+  { id: 1, src: "profile_icons/P1.gif", alt: "" },
   { id: 2, src: "profile_icons/P2.jpg", alt: "" },
   { id: 3, src: "profile_icons/P3.jpg", alt: "" },
   { id: 4, src: "profile_icons/P4.jpg", alt: "" },
@@ -62,11 +62,11 @@ const profileIcons = [
   { id: 7, src: "profile_icons/P7.jpg", alt: "" },
   { id: 8, src: "profile_icons/P8.jpg", alt: "" },
   { id: 9, src: "profile_icons/P9.jpg", alt: "" },
-  { id: 10, src: "profile_icons/P10.jpg", alt: "" },
-  { id: 11, src: "profile_icons/P11.jpg", alt: "" },
-  { id: 12, src: "profile_icons/P12.jpg", alt: "" },
-  { id: 13, src: "profile_icons/P13.jpg", alt: "" },
-  { id: 14, src: "profile_icons/P14.jpg", alt: "" },
+  { id: 10, src: "profile_icons/P10.gif", alt: "" },
+  { id: 11, src: "profile_icons/P11.gif", alt: "" },
+  { id: 12, src: "profile_icons/P12.gif", alt: "" },
+  { id: 13, src: "profile_icons/P13.gif", alt: "" },
+  { id: 14, src: "profile_icons/P14.gif", alt: "" },
   { id: 15, src: "profile_icons/P15.jpg", alt: "" },
   { id: 16, src: "profile_icons/P16.jpg", alt: "" },
   { id: 17, src: "profile_icons/P17.jpg", alt: "" },
@@ -75,7 +75,7 @@ const profileIcons = [
 
 const ManhwaCard = ({ title, cover, subtitle }) => (
   <div className="flex flex-col items-center">
-    <div className="rounded-lg overflow-hidden border border-border bg-muted shadow-md hover:shadow-lg transition-shadow cursor-pointer group w-[108%]">
+    <div className="rounded-lg overflow-hidden border border-border bg-muted shadow-md hover:shadow-lg transition-shadow cursor-pointer group w-[108%] ">
       <div className="relative w-[100%]">
         <img
           src={cover}

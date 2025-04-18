@@ -40,7 +40,7 @@ const Login = () => {
     };
 
     try {
-      const req = await fetch('http://localhost:1337/api/auth/local', reqOptions);
+      const req = await fetch('https://tgsaviors.onrender.com/login', reqOptions);
       const res = await req.json();
 
       if (res.error) {

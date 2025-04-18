@@ -53,8 +53,8 @@ const Register = () => {
     };
 
     try {
-      // Usar la URL temporal de Webempresa o el dominio
-      const apiUrl = 'https://rankher.net/';
+      // URL de tu servidor backend (cámbiala por la de tu servidor real)
+      const apiUrl = 'https://tgsaviors.onrender.com/register'; // Cambia esto a la URL pública de tu backend
       const req = await fetch(apiUrl, reqOptions);
       const res = await req.json();
 
