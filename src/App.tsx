@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ArtworkGallery from "./pages/Artwork";
 import Profile from "./pages/Profile";
+import Chapter from "./pages/Chapter";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
   <Route path="/register" element={<Register />} />
   <Route path="/artwork" element={<ArtworkGallery />} />
   <Route path="/profile" element={<Profile />} />
+  <Route path="/chapter" element={<Chapter />} />
   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
   <Route path="*" element={<NotFound />} />
 </Routes>
